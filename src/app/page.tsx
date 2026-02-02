@@ -80,7 +80,7 @@ const teamMembers = [
     id: "team-1",
     name: "[Damian Panes]",
     role: "[founder]",
-    image: "/images/damian.jpeg",
+    image: "/images/damian.jpg",
     linkedin: "https://www.linkedin.com/in/damianpanes/",
     companies: [
       { logo: "/images/company-damian1.png", name: "Company 1", url: "#" },
@@ -93,7 +93,7 @@ const teamMembers = [
     id: "team-2",
     name: "[Nacho Bernardo]",
     role: "[founder]",
-    image: "/images/nacho.jpeg",
+    image: "/images/nacho.jpg",
     linkedin: "https://www.linkedin.com/in/natochi/",
     companies: [
       { logo: "/images/company-nacho1.png", name: "Company 1", url: "#" },
@@ -106,7 +106,7 @@ const teamMembers = [
     id: "team-3",
     name: "[Rene Caceres]",
     role: "[founder]",
-    image: "/images/reno.jpeg",
+    image: "/images/reno.png",
     linkedin: "https://www.linkedin.com/in/pup/",
     companies: [
       { logo: "/images/company-reno1.png", name: "Company 1", url: "#" },
@@ -257,7 +257,7 @@ export default function Home() {
             <p>
             La Clase nació en 2019 como un espacio único donde fundadores que construyeron startups chilenas de clase mundial compartieron, sin filtros, cómo se crean cosas que importan. Su misión fue acercar el conocimiento real del emprendimiento —el que no está en libros— a quienes querían construir, aprender y atreverse.            </p>
             <p>
-            La Clase 2.0 retoma ese espíritu y lo abre a toda la comunidad: cinco días, cinco clases elegidas por la gente, dictadas por los founders que están construyendo hoy. Buscamos transmitir conocimiento práctico, inspirar a la próxima generación y volver a juntar a la comunidad tech alrededor de ideas, oficio y criterio.            </p>
+            La Clase 2.0 retoma ese espíritu y lo abre a toda la comunidad: cinco días, diez clases elegidas por la gente, dictadas por los founders que están construyendo hoy. Buscamos transmitir conocimiento práctico, inspirar a la próxima generación y volver a juntar a la comunidad tech alrededor de ideas, oficio y criterio.            </p>
           </div>
         </section>
 
@@ -269,7 +269,7 @@ export default function Home() {
             [El evento]
           </h2>
           <p className="text-sm leading-relaxed mb-6">
-          La Clase 2.0 es un ciclo abierto de charlas en vivo, con foco en experiencia real. Cada día, un founder lidera una clase práctica: cómo piensa, cómo decide y cómo construye. No es teoría. Es oficio. Al final de cada sesión, hay espacio para preguntas y conversación entre asistentes.          </p>
+          La Clase 2.0 es un ciclo abierto de charlas en vivo, con foco en experiencia real. Cada día, dos founders lideran una clase práctica: cómo piensa, cómo decide y cómo construye. No es teoría. Es oficio. Al final de cada sesión, hay espacio para preguntas y conversación entre asistentes.          </p>
           <Card className="border-primary/30">
             <CardContent className="p-6">
               <div className="grid grid-cols-2 gap-4 text-sm">
@@ -354,7 +354,7 @@ export default function Home() {
             </Card>
             <Card>
               <CardContent className="p-6 text-center">
-                <span className="text-4xl text-primary block">[5]</span>
+                <span className="text-4xl text-primary block">[10]</span>
                 <span className="text-xs text-muted-foreground uppercase tracking-wider">
                   Speakers
                 </span>
@@ -646,7 +646,7 @@ export default function Home() {
             [Impacto en redes]
           </h2>
           <p className="text-sm leading-relaxed mb-6">
-            En solo 6 meses, llevamos 1.5M de visitas solo en los post de los founders.
+            En solo 6 meses, llevamos 1.5M de vistas solo en los post de los founders.
           </p>
 
           {/* Mobile carousel — auto-scroll; click para ver completa */}
@@ -774,11 +774,11 @@ export default function Home() {
             </li>
             <li className="flex gap-3">
               <span className="text-primary">•</span>
-              <span>Logro o proyecto 3</span>
+              <span>Dimos $1000 en premio de hackathon.</span>
             </li>
             <li className="flex gap-3">
               <span className="text-primary">•</span>
-              <span>[Logro o proyecto 4]</span>
+              <span>Partners with Platanus % CommunityOS</span>
             </li>
           </ul>
 
