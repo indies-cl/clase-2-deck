@@ -2,6 +2,9 @@
   "$schema": "https://cdn.cloudflare.com/workers/wrangler/config-schema.json",
   "name": "clase-2-sponsor-deck",
   "compatibility_date": "2026-01-29",
+  "compatibility_flags": {
+    "nodejs_compat": true
+  },
   "assets": {
     "directory": "./out"
   }
