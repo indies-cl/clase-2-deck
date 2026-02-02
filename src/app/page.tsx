@@ -1,6 +1,7 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import Image from "next/image";
+import { useState, useEffect, useRef } from "react";
 import { Sidebar } from "@/components/sidebar";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -77,74 +78,77 @@ const speakers = [
 const teamMembers = [
   {
     id: "team-1",
-    name: "[Nombre 1]",
-    role: "[Rol]",
-    image: "/images/team1.jpg",
-    linkedin: "#",
+    name: "[Damian Panes]",
+    role: "[founder]",
+    image: "/images/damian.jpeg",
+    linkedin: "https://www.linkedin.com/in/damianpanes/",
     companies: [
-      { logo: "/images/company1.png", name: "Company 1", url: "#" },
-      { logo: "/images/company2.png", name: "Company 2", url: "#" },
-      { logo: "/images/company3.png", name: "Company 3", url: "#" },
-      { logo: "/images/company4.png", name: "Company 4", url: "#" },
+      { logo: "/images/company-damian1.png", name: "Company 1", url: "#" },
+      { logo: "/images/company-damian2.png", name: "Company 2", url: "#" },
+      { logo: "/images/company-damian3.png", name: "Company 3", url: "#" },
+      { logo: "/images/company-damian4.png", name: "Company 4", url: "#" },
     ],
   },
   {
     id: "team-2",
-    name: "[Nombre 2]",
-    role: "[Rol]",
-    image: "/images/team2.jpg",
-    linkedin: "#",
+    name: "[Nacho Bernardo]",
+    role: "[founder]",
+    image: "/images/nacho.jpeg",
+    linkedin: "https://www.linkedin.com/in/natochi/",
     companies: [
-      { logo: "/images/company1.png", name: "Company 1", url: "#" },
-      { logo: "/images/company2.png", name: "Company 2", url: "#" },
-      { logo: "/images/company3.png", name: "Company 3", url: "#" },
-      { logo: "/images/company4.png", name: "Company 4", url: "#" },
+      { logo: "/images/company-nacho1.png", name: "Company 1", url: "#" },
+      { logo: "/images/company-nacho2.png", name: "Company 2", url: "#" },
+      { logo: "/images/company-nacho3.png", name: "Company 3", url: "#" },
+      { logo: "/images/company-nacho4.png", name: "Company 4", url: "#" },
     ],
   },
   {
     id: "team-3",
-    name: "[Nombre 3]",
-    role: "[Rol]",
-    image: "/images/team3.jpg",
-    linkedin: "#",
+    name: "[Rene Caceres]",
+    role: "[founder]",
+    image: "/images/reno.jpeg",
+    linkedin: "https://www.linkedin.com/in/pup/",
     companies: [
-      { logo: "/images/company1.png", name: "Company 1", url: "#" },
-      { logo: "/images/company2.png", name: "Company 2", url: "#" },
-      { logo: "/images/company3.png", name: "Company 3", url: "#" },
-      { logo: "/images/company4.png", name: "Company 4", url: "#" },
+      { logo: "/images/company-reno1.png", name: "Company 1", url: "#" },
+      { logo: "/images/company-reno2.png", name: "Company 2", url: "#" },
+      { logo: "/images/company-reno3.png", name: "Company 3", url: "#" },
+      { logo: "/images/company-reno4.png", name: "Company 4", url: "#" },
     ],
   },
-  {
-    id: "team-4",
-    name: "[Nombre 4]",
-    role: "[Rol]",
-    image: "/images/team4.jpg",
-    linkedin: "#",
-    companies: [
-      { logo: "/images/company1.png", name: "Company 1", url: "#" },
-      { logo: "/images/company2.png", name: "Company 2", url: "#" },
-      { logo: "/images/company3.png", name: "Company 3", url: "#" },
-      { logo: "/images/company4.png", name: "Company 4", url: "#" },
-    ],
-  },
-  {
-    id: "team-5",
-    name: "[Nombre 5]",
-    role: "[Rol]",
-    image: "/images/team5.jpg",
-    linkedin: "#",
-    companies: [
-      { logo: "/images/company1.png", name: "Company 1", url: "#" },
-      { logo: "/images/company2.png", name: "Company 2", url: "#" },
-      { logo: "/images/company3.png", name: "Company 3", url: "#" },
-      { logo: "/images/company4.png", name: "Company 4", url: "#" },
-    ],
-  },
+];
+
+// Imágenes de impacto (carpeta public/images/impacto)
+const impactoImages = [
+  "Screenshot 2026-02-02 at 11-58-36 Actividad Nacho Bernardo LinkedIn.png",
+  "Screenshot 2026-02-02 at 11-58-49 Actividad Nacho Bernardo LinkedIn.png",
+  "Screenshot 2026-02-02 at 11-59-02 Actividad Nacho Bernardo LinkedIn.png",
+  "Screenshot 2026-02-02 at 11-59-06 Actividad Nacho Bernardo LinkedIn.png",
+  "Screenshot 2026-02-02 at 11-59-13 Actividad Nacho Bernardo LinkedIn.png",
+  "Screenshot 2026-02-02 at 11-59-21 Actividad Nacho Bernardo LinkedIn.png",
+  "Screenshot 2026-02-02 at 11-59-37 Actividad Nacho Bernardo LinkedIn.png",
+  "Screenshot 2026-02-02 at 11-59-43 Actividad Nacho Bernardo LinkedIn.png",
+  "Screenshot 2026-02-02 at 11-59-54 Actividad Nacho Bernardo LinkedIn.png",
+  "Screenshot 2026-02-02 at 12-00-04 Actividad Nacho Bernardo LinkedIn.png",
+  "Screenshot 2026-02-02 at 12-00-18 Actividad Nacho Bernardo LinkedIn.png",
+  "Screenshot 2026-02-02 at 12-01-39 Actividad Nacho Bernardo LinkedIn.png",
+  "Screenshot 2026-02-02 at 12-01-45 Actividad Nacho Bernardo LinkedIn.png",
+  "Screenshot 2026-02-02 at 12-01-58 Actividad Nacho Bernardo LinkedIn.png",
+  "Screenshot 2026-02-02 at 12-02-12 Actividad Nacho Bernardo LinkedIn.png",
+  "Screenshot 2026-02-02 at 12-02-17 Actividad Nacho Bernardo LinkedIn.png",
+  "Screenshot 2026-02-02 at 12-03-14 Actividad Nacho Bernardo LinkedIn.png",
+  "Screenshot 2026-02-02 at 12-03-20 Actividad Nacho Bernardo LinkedIn.png",
+  "Screenshot 2026-02-02 at 12-03-32 Actividad Nacho Bernardo LinkedIn.png",
+  "Screenshot 2026-02-02 at 12-05-19 Actividad Nacho Bernardo LinkedIn.png",
+  "Screenshot 2026-02-02 at 12-05-23 Actividad Nacho Bernardo LinkedIn.png",
+  "Screenshot 2026-02-02 at 12-05-28 Actividad Nacho Bernardo LinkedIn.png",
 ];
 
 export default function Home() {
   const [activeSection, setActiveSection] = useState("about");
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [impactoLightbox, setImpactoLightbox] = useState<string | null>(null);
+  const impactDesktopRef = useRef<HTMLDivElement>(null);
+  const impactMobileRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -164,6 +168,41 @@ export default function Home() {
     });
 
     return () => observer.disconnect();
+  }, []);
+
+  // Auto-scroll carrusel impacto (desktop: grid 3×2 por fila; mobile: horizontal)
+  useEffect(() => {
+    const stepMobile = 320;
+    const stepDesktop = 260; // ~1 fila del grid 3 columnas
+    const interval = 2500; // más bajo = scroll más rápido (ej. 2000, 1500)
+    const desktop = impactDesktopRef.current;
+    const mobile = impactMobileRef.current;
+
+    const scrollDesktop = () => {
+      if (!desktop) return;
+      const next = desktop.scrollTop + stepDesktop;
+      if (next >= desktop.scrollHeight - desktop.clientHeight - 20) {
+        desktop.scrollTo({ top: 0, behavior: "smooth" });
+      } else {
+        desktop.scrollTo({ top: next, behavior: "smooth" });
+      }
+    };
+    const scrollMobile = () => {
+      if (!mobile) return;
+      const next = mobile.scrollLeft + stepMobile;
+      if (next >= mobile.scrollWidth - mobile.clientWidth - 20) {
+        mobile.scrollTo({ left: 0, behavior: "smooth" });
+      } else {
+        mobile.scrollTo({ left: next, behavior: "smooth" });
+      }
+    };
+
+    const idD = setInterval(scrollDesktop, interval);
+    const idM = setInterval(scrollMobile, interval);
+    return () => {
+      clearInterval(idD);
+      clearInterval(idM);
+    };
   }, []);
 
   const scrollTo = (id: string) => {
@@ -216,11 +255,9 @@ export default function Home() {
           </h2>
           <div className="space-y-4 text-sm leading-relaxed">
             <p>
-              [Descripción del evento tech. Qué es clase 2.0, cuál es su misión y visión.]
-            </p>
+            La Clase nació en 2019 como un espacio único donde fundadores que construyeron startups chilenas de clase mundial compartieron, sin filtros, cómo se crean cosas que importan. Su misión fue acercar el conocimiento real del emprendimiento —el que no está en libros— a quienes querían construir, aprender y atreverse.            </p>
             <p>
-              [Segunda línea de descripción sobre el propósito del evento y lo que busca lograr en la comunidad tech.]
-            </p>
+            La Clase 2.0 retoma ese espíritu y lo abre a toda la comunidad: cinco días, cinco clases elegidas por la gente, dictadas por los founders que están construyendo hoy. Buscamos transmitir conocimiento práctico, inspirar a la próxima generación y volver a juntar a la comunidad tech alrededor de ideas, oficio y criterio.            </p>
           </div>
         </section>
 
@@ -232,18 +269,21 @@ export default function Home() {
             [El evento]
           </h2>
           <p className="text-sm leading-relaxed mb-6">
-            [Descripción del formato del evento: conferencias, workshops, networking, etc.]
-          </p>
+          La Clase 2.0 es un ciclo abierto de charlas en vivo, con foco en experiencia real. Cada día, un founder lidera una clase práctica: cómo piensa, cómo decide y cómo construye. No es teoría. Es oficio. Al final de cada sesión, hay espacio para preguntas y conversación entre asistentes.          </p>
           <Card className="border-primary/30">
             <CardContent className="p-6">
               <div className="grid grid-cols-2 gap-4 text-sm">
                 <div>
                   <span className="text-muted-foreground">Inicio:</span>
-                  <p className="text-primary">[FECHA_INICIO]</p>
+                  <p className="text-primary">[FECHA_INICIO: 6 DE MARZO]</p>
                 </div>
                 <div>
                   <span className="text-muted-foreground">Término:</span>
-                  <p className="text-primary">[FECHA_FIN]</p>
+                  <p className="text-primary">[FECHA_FIN: 9 DE MARZO]</p>
+                </div>
+                <div>
+                  <span className="text-muted-foreground">Inicio:</span>
+                  <p className="text-primary">[HORARIO: DE 6PM A 9PM]</p>
                 </div>
               </div>
             </CardContent>
@@ -259,7 +299,7 @@ export default function Home() {
           </h2>
           <div className="flex flex-col sm:flex-row gap-6">
             <div className="w-full sm:w-72 h-56 border-2 border-dashed border-primary/40 flex items-center justify-center text-primary/60 text-sm overflow-hidden flex-shrink-0">
-              [IMAGEN_LUGAR]
+            <img src="/images/auditorio.jpg" alt="auditorio-la-clase" className="w-full h-full object-cover" />
             </div>
             <div className="flex flex-col gap-4 flex-1">
               {/* Venue Sponsor Card (Horizontal) */}
@@ -269,19 +309,18 @@ export default function Home() {
                     <div className="text-center flex-shrink-0 w-full sm:w-auto">
                       <span className="text-2xl block mb-2">⌂</span>
                       <CardTitle className="text-primary uppercase text-xs tracking-wider">
-                        Venue Sponsor
+                        Venue
                       </CardTitle>
                       <p className="text-xs text-muted-foreground mt-2">
-                        [STATUS]
+                        [AUDITORIO D’ETIGNY]
                       </p>
                     </div>
                     <Separator orientation="vertical" className="hidden sm:block h-16" />
                     <div className="flex-shrink-0 text-center w-full sm:w-auto">
                       <p className="text-xs text-muted-foreground mb-2">
-                        Sponsor confirmado:
                       </p>
                       <div className="px-3 py-2 border-2 border-dashed border-primary/40 text-xs text-primary/60 bg-card/50 inline-block">
-                        [VENUE_SPONSOR]
+                        [UNIVERSIDAD DE CHILE]
                       </div>
                     </div>
                   </div>
@@ -290,8 +329,8 @@ export default function Home() {
 
               {/* Location text below the card */}
               <div className="flex flex-col justify-center">
-                <h3 className="text-primary text-lg">[NOMBRE_LUGAR]</h3>
-                <p className="text-muted-foreground text-sm">[DIRECCION]</p>
+                <h3 className="text-primary text-lg">[UNIVERSIDAD DE CHILE]</h3>
+                <p className="text-muted-foreground text-sm">[BEAUCHEF 851, SANTIAGO]</p>
               </div>
             </div>
           </div>
@@ -304,13 +343,10 @@ export default function Home() {
           <h2 className="text-2xl text-primary mb-6 uppercase tracking-wider">
             [Estadísticas]
           </h2>
-          <p className="text-sm leading-relaxed mb-6">
-            [Descripción del perfil de asistentes y qué esperar del evento.]
-          </p>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
             <Card>
               <CardContent className="p-6 text-center">
-                <span className="text-4xl text-primary block">[XXX]</span>
+                <span className="text-4xl text-primary block">[+150]</span>
                 <span className="text-xs text-muted-foreground uppercase tracking-wider">
                   Asistentes
                 </span>
@@ -318,7 +354,7 @@ export default function Home() {
             </Card>
             <Card>
               <CardContent className="p-6 text-center">
-                <span className="text-4xl text-primary block">[XX]</span>
+                <span className="text-4xl text-primary block">[5]</span>
                 <span className="text-xs text-muted-foreground uppercase tracking-wider">
                   Speakers
                 </span>
@@ -326,7 +362,7 @@ export default function Home() {
             </Card>
             <Card>
               <CardContent className="p-6 text-center">
-                <span className="text-4xl text-primary block">[Xh]</span>
+                <span className="text-4xl text-primary block">[15hrs]</span>
                 <span className="text-xs text-muted-foreground uppercase tracking-wider">
                   Contenido
                 </span>
@@ -343,7 +379,7 @@ export default function Home() {
             [Speakers]
           </h2>
           <p className="text-sm leading-relaxed mb-6">
-            [Descripción de los speakers y el tipo de contenido que compartirán.]
+          Los speakers serán founders activos, elegidos por la comunidad. Los asistentes votan a quién quieren escuchar y, según ese ranking, invitamos a los más votados a dictar cada clase.
           </p>
           <div className="grid grid-cols-2 lg:grid-cols-3 gap-4">
             {speakers.map((speaker) => (
@@ -390,16 +426,42 @@ export default function Home() {
           <h2 className="text-2xl text-primary mb-6 uppercase tracking-wider">
             [Fotos]
           </h2>
-
+          <p className="text-sm leading-relaxed mb-6">
+            Eventos anteriores, algunas cosas divertidas.
+          </p>
           {/* Photos data with descriptions */}
           {(() => {
             const photos = [
-              { id: 1, description: "[Descripción de la foto 1]" },
-              { id: 2, description: "[Descripción de la foto 2]" },
-              { id: 3, description: "[Descripción de la foto 3]" },
-              { id: 4, description: "[Descripción de la foto 4]" },
-              { id: 5, description: "[Descripción de la foto 5]" },
-              { id: 6, description: "[Descripción de la foto 6]" },
+              {
+                id: 1,
+                description: "[gente feliz @ nuestro primer evento]",
+                image: "/images/foto1.jpg",
+              },
+              {
+                id: 2,
+                description: "[gente atenta @ nuestro segundo evento]",
+                image: "/images/foto2.jpg", // extensión real del archivo
+              },
+              {
+                id: 3,
+                description: "[penquistas @ primer evento en conce ]",
+                image: "/images/foto3.jpeg", // extensión real del archivo
+              },
+              {
+                id: 4,
+                description: "[nacho hablando ante 400 personas]",
+                image: "/images/foto4.jpg", // extensión real del archivo
+              },
+              {
+                id: 5,
+                description: "[gente curada @ evento de chelas tech]",
+                image: "/images/foto5.jpg", // extensión real del archivo
+              },
+              {
+                id: 6,
+                description: "[puestito regalando 30k]",
+                image: "/images/foto6.jpg", // extensión real del archivo
+              },
             ];
 
             return (
@@ -410,10 +472,16 @@ export default function Home() {
                     {photos.map((photo) => (
                       <div
                         key={photo.id}
-                        className="snap-start min-w-[80%] aspect-video border-2 border-dashed border-primary/40 flex items-center justify-center text-primary/60 text-sm relative group"
+                        className="snap-start min-w-[80%] aspect-video border-2 border-dashed border-primary/40 relative group overflow-hidden bg-card"
                         title={photo.description}
                       >
-                        <span>[FOTO_{photo.id}]</span>
+                        <Image
+                          src={photo.image}
+                          alt={photo.description}
+                          fill
+                          sizes="(max-width: 1024px) 80vw, 33vw"
+                          className="object-cover"
+                        />
                         <div className="absolute inset-0 bg-black/70 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center p-4">
                           <p className="text-xs text-primary text-center">
                             {photo.description}
@@ -429,10 +497,16 @@ export default function Home() {
                   {photos.map((photo) => (
                     <div
                       key={photo.id}
-                      className="aspect-video border-2 border-dashed border-primary/40 flex items-center justify-center text-primary/60 text-sm relative group cursor-pointer"
+                      className="aspect-video border-2 border-dashed border-primary/40 relative group cursor-pointer overflow-hidden bg-card"
                       title={photo.description}
                     >
-                      <span>[FOTO_{photo.id}]</span>
+                      <Image
+                        src={photo.image}
+                        alt={photo.description}
+                        fill
+                        sizes="(min-width: 1024px) 33vw, 100vw"
+                        className="object-cover"
+                      />
                       <div className="absolute inset-0 bg-black/70 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center p-4">
                         <p className="text-xs text-primary text-center">
                           {photo.description}
@@ -454,7 +528,7 @@ export default function Home() {
             [Team]
           </h2>
           <p className="text-sm leading-relaxed mb-6">
-            [Descripción del equipo organizador del evento.]
+            Team @ indies.la:
           </p>
           <div className="border-2 border-dashed border-primary/40 overflow-hidden">
             <table className="w-full border-collapse">
@@ -487,8 +561,14 @@ export default function Home() {
                   >
                     {/* Photo */}
                     <td className="p-2">
-                      <div className="w-10 h-10 border-2 border-dashed border-primary/40 overflow-hidden flex items-center justify-center text-primary/40 text-[8px]">
-                        [IMG]
+                      <div className="w-10 h-10 border-2 border-dashed border-primary/40 overflow-hidden flex items-center justify-center bg-card">
+                        <Image
+                          src={member.image}
+                          alt={member.name}
+                          width={40}
+                          height={40}
+                          className="w-full h-full object-cover"
+                        />
                       </div>
                     </td>
 
@@ -516,10 +596,16 @@ export default function Home() {
                               href={company.url}
                               target="_blank"
                               rel="noopener noreferrer"
-                              className="w-7 h-7 border-2 border-dashed border-primary/40 flex items-center justify-center bg-card/50 overflow-hidden hover:bg-primary/20 transition-colors cursor-pointer text-primary/40 text-[6px]"
+                              className="w-7 h-7 border-2 border-dashed border-primary/40 flex items-center justify-center bg-card/50 overflow-hidden hover:bg-primary/20 transition-colors cursor-pointer"
                               title={company.name}
                             >
-                              [L]
+                              <Image
+                                src={company.logo}
+                                alt={company.name}
+                                width={28}
+                                height={28}
+                                className="w-full h-full object-contain"
+                              />
                             </a>
                           ))}
                         </div>
@@ -554,38 +640,115 @@ export default function Home() {
 
         <Separator className="mb-16" />
 
-        {/* Impact Section */}
+        {/* Impact Section — estilo tipo “Fotos”: grid 3×2, auto-scroll, click para ver completa */}
         <section id="impact" className="mb-16">
           <h2 className="text-2xl text-primary mb-6 uppercase tracking-wider">
-            [Impacto]
+            [Impacto en redes]
           </h2>
           <p className="text-sm leading-relaxed mb-6">
-            [Descripción del impacto esperado o logrado en ediciones anteriores.]
+            En solo 6 meses, llevamos 1.5M de visitas solo en los post de los founders.
           </p>
 
-          {/* Mobile carousel */}
+          {/* Mobile carousel — auto-scroll; click para ver completa */}
           <div className="lg:hidden">
-            <div className="flex gap-3 overflow-x-auto snap-x snap-mandatory [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-              {["[LINKEDIN_POST]", "[INSTAGRAM_POST]"].map((label, idx) => (
-                <div
+            <div
+              ref={impactMobileRef}
+              className="flex gap-3 overflow-x-auto snap-x snap-mandatory [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+            >
+              {impactoImages.map((filename, idx) => (
+                <button
                   key={idx}
-                  className="snap-start min-w-[90%] aspect-video border-2 border-dashed border-primary/40 flex items-center justify-center text-primary/60 text-sm"
+                  type="button"
+                  onClick={() => setImpactoLightbox(filename)}
+                  className="snap-start min-w-[85%] aspect-[4/5] border border-primary/30 relative overflow-hidden bg-card flex-shrink-0 cursor-pointer focus:outline-none focus:ring-2 focus:ring-primary/50"
                 >
-                  {label}
+                  <Image
+                    src={`/images/impacto/${encodeURIComponent(filename)}`}
+                    alt={`Impacto ${idx + 1}`}
+                    fill
+                    sizes="85vw"
+                    className="object-cover grayscale hover:grayscale-0 transition-[filter]"
+                  />
+                </button>
+              ))}
+            </div>
+          </div>
+
+          {/* Desktop: grid 3 columnas × 2 filas visibles, auto-scroll vertical; click para ver completa */}
+          <div
+            ref={impactDesktopRef}
+            className="hidden lg:block h-[32rem] overflow-y-auto overflow-x-hidden snap-y snap-mandatory [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+          >
+            <div className="flex flex-col gap-3 pb-2">
+              {Array.from({ length: Math.ceil(impactoImages.length / 3) }, (_, rowIndex) => (
+                <div
+                  key={rowIndex}
+                  className="snap-start snap-always grid grid-cols-3 gap-3 flex-shrink-0"
+                >
+                  {impactoImages.slice(rowIndex * 3, rowIndex * 3 + 3).map((filename, colIndex) => (
+                    <button
+                      key={`${rowIndex}-${colIndex}`}
+                      type="button"
+                      onClick={() => setImpactoLightbox(filename)}
+                      className="relative w-full aspect-[4/3] border border-primary/30 overflow-hidden bg-card cursor-pointer focus:outline-none focus:ring-2 focus:ring-primary/50 focus:ring-inset"
+                    >
+                      <Image
+                        src={`/images/impacto/${encodeURIComponent(filename)}`}
+                        alt={`Impacto ${rowIndex * 3 + colIndex + 1}`}
+                        fill
+                        sizes="(min-width: 1024px) 33vw, 100vw"
+                        className="object-cover grayscale hover:grayscale-0 transition-[filter]"
+                      />
+                    </button>
+                  ))}
                 </div>
               ))}
             </div>
           </div>
 
-          {/* Desktop grid */}
-          <div className="hidden lg:grid grid-cols-2 gap-4">
-            <div className="aspect-video border-2 border-dashed border-primary/40 flex items-center justify-center text-primary/60 text-sm">
-              [LINKEDIN_POST]
+          <p className="text-sm text-muted-foreground text-center mt-4">
+            Puedes ver el album completo{" "}
+            <a
+              href="#"
+              className="text-primary font-medium underline underline-offset-2 decoration-primary hover:opacity-90"
+            >
+              aquí
+            </a>
+            .
+          </p>
+
+          {/* Lightbox: ver foto completa al hacer click */}
+          {impactoLightbox && (
+            <div
+              className="fixed inset-0 z-50 bg-black/90 flex items-center justify-center p-4"
+              onClick={() => setImpactoLightbox(null)}
+              role="dialog"
+              aria-modal="true"
+              aria-label="Cerrar imagen"
+            >
+              <button
+                type="button"
+                onClick={() => setImpactoLightbox(null)}
+                className="absolute top-4 right-4 w-10 h-10 flex items-center justify-center text-white/80 hover:text-white text-2xl leading-none"
+                aria-label="Cerrar"
+              >
+                ×
+              </button>
+              <div
+                className="relative w-full h-full max-w-5xl max-h-[90vh]"
+                onClick={(e) => e.stopPropagation()}
+              >
+                <Image
+                  src={`/images/impacto/${encodeURIComponent(impactoLightbox)}`}
+                  alt="Impacto ampliada"
+                  fill
+                  className="object-contain"
+                  sizes="100vw"
+                  onClick={(e) => e.stopPropagation()}
+                />
+              </div>
             </div>
-            <div className="aspect-video border-2 border-dashed border-primary/40 flex items-center justify-center text-primary/60 text-sm">
-              [INSTAGRAM_POST]
-            </div>
-          </div>
+          )}
         </section>
 
         <Separator className="mb-16" />
@@ -593,29 +756,75 @@ export default function Home() {
         {/* Achievements Section */}
         <section id="achievements" className="mb-16">
           <h2 className="text-2xl text-primary mb-6 uppercase tracking-wider">
-            [Achievements]
+            [Early achievements de indies.la]
           </h2>
           <p className="text-sm leading-relaxed mb-6">
-            [Descripción de logros o hitos del evento en ediciones anteriores.]
+            Llevamos poco tiempo, pero ya tenemos algunos logros que nos hacen muy orgullosos.
           </p>
-          <ul className="space-y-3 text-sm">
+
+          {/* Listado de logros en punteos — edita los textos debajo */}
+          <ul className="space-y-3 text-sm mb-8">
             <li className="flex gap-3">
               <span className="text-primary">•</span>
-              <span>[Logro o proyecto 1]</span>
+              <span>+1400 miembros en la comunidad.</span>
             </li>
             <li className="flex gap-3">
               <span className="text-primary">•</span>
-              <span>[Logro o proyecto 2]</span>
+              <span>Cientos de asistentes en nuestros eventos.</span>
             </li>
             <li className="flex gap-3">
               <span className="text-primary">•</span>
-              <span>[Logro o proyecto 3]</span>
+              <span>Logro o proyecto 3</span>
             </li>
             <li className="flex gap-3">
               <span className="text-primary">•</span>
               <span>[Logro o proyecto 4]</span>
             </li>
           </ul>
+
+          {/* Spot: imagen + título + link (ej. nota en DF Mas) */}
+          <div className="space-y-4">
+            {[
+              {
+                title: "El DF Mas cubrió nuestro evento con una nota.",
+                image: "/images/achievement-df-mas.png",
+                linkText: "aquí",
+                linkUrl: "https://www.df.cl/df-mas/punto-de-partida/indies-los-veinteaneros-que-quieren-financiar-ideas-locas",
+              },
+            ].map((spot, idx) => (
+              <div
+                key={idx}
+                className="rounded-lg border-2 border-dashed border-primary/40 bg-card overflow-hidden max-w-2xl mr-auto"
+              >
+                <div className="px-4 py-3 sm:px-5 sm:py-4 flex flex-col items-center text-center">
+                  <p className="text-primary text-sm sm:text-base font-medium mb-2">
+                    {spot.title}
+                  </p>
+                  <div className="relative w-full max-w-2xl h-60 sm:h-100 rounded border border-primary/20 overflow-hidden bg-muted/30 flex items-center justify-center">
+                    <Image
+                      src={spot.image}
+                      alt={spot.title}
+                      fill
+                      className="object-contain object-center"
+                      sizes="(max-width: 768px) 100vw, 512px"
+                    />
+                  </div>
+                  <p className="text-sm text-muted-foreground mt-2">
+                    Puedes ver la versión digital{" "}
+                    <a
+                      href={spot.linkUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-primary font-medium underline underline-offset-2 hover:opacity-90"
+                    >
+                      {spot.linkText}
+                    </a>
+                    .
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
         </section>
 
         <Separator className="mb-16" />
@@ -632,9 +841,9 @@ export default function Home() {
                 <div className="text-center">
                   <span className="text-2xl block mb-2">◇</span>
                   <CardTitle className="text-primary uppercase text-sm tracking-wider">
-                    Basic
+                    Lindie
                   </CardTitle>
-                  <p className="text-2xl mt-2">$[X,XXX]</p>
+                  <p className="text-2xl mt-2">$[500]</p>
                   <span className="text-xs text-muted-foreground">USD</span>
                 </div>
               </CardHeader>
@@ -642,15 +851,15 @@ export default function Home() {
                 <ul className="text-xs space-y-2">
                   <li className="flex gap-2">
                     <span className="text-primary">•</span>
-                    [Beneficio 1]
+                    Stickers pequeños con el logo de tu empresa. 
                   </li>
                   <li className="flex gap-2">
                     <span className="text-primary">•</span>
-                    [Beneficio 2]
+                    Aparacion en la landing page.
                   </li>
                   <li className="flex gap-2">
                     <span className="text-primary">•</span>
-                    [Beneficio 3]
+                    3 Spots reservados para el evento.
                   </li>
                 </ul>
                 <Separator className="my-4" />
@@ -659,10 +868,13 @@ export default function Home() {
                 </p>
                 <div className="flex gap-2 flex-wrap">
                   <div className="px-3 py-1 border border-dashed border-primary/40 text-xs text-primary/60">
-                    [LOGO]
+                    [Markip]
                   </div>
                   <div className="px-3 py-1 border border-dashed border-primary/40 text-xs text-primary/60">
-                    [LOGO]
+                    [Miguel Paz]
+                  </div>
+                  <div className="px-3 py-1 border border-dashed border-primary/40 text-xs text-primary/60">
+                    [Reveniu]
                   </div>
                 </div>
               </CardContent>
@@ -674,9 +886,9 @@ export default function Home() {
                 <div className="text-center">
                   <span className="text-2xl block mb-2">◆</span>
                   <CardTitle className="text-primary uppercase text-sm tracking-wider">
-                    Partner
+                    Jeff Bezos
                   </CardTitle>
-                  <p className="text-2xl mt-2">$[X,XXX]</p>
+                  <p className="text-2xl mt-2">$[1,000]</p>
                   <span className="text-xs text-muted-foreground">USD</span>
                 </div>
               </CardHeader>
@@ -688,15 +900,11 @@ export default function Home() {
                   </li>
                   <li className="flex gap-2">
                     <span className="text-primary">•</span>
-                    [Beneficio adicional 1]
+                    Stickers grandes junto a los de indies.
                   </li>
                   <li className="flex gap-2">
                     <span className="text-primary">•</span>
-                    [Beneficio adicional 2]
-                  </li>
-                  <li className="flex gap-2">
-                    <span className="text-primary">•</span>
-                    [Beneficio adicional 3]
+                    Marca destacada en la presentación de inicio y cierre del evento. 
                   </li>
                 </ul>
                 <Separator className="my-4" />
@@ -705,10 +913,7 @@ export default function Home() {
                 </p>
                 <div className="flex gap-2 flex-wrap">
                   <div className="px-3 py-1 border border-dashed border-primary/40 text-xs text-primary/60">
-                    [LOGO]
-                  </div>
-                  <div className="px-3 py-1 border border-dashed border-primary/40 text-xs text-primary/60">
-                    [LOGO]
+                    [CChC]
                   </div>
                 </div>
               </CardContent>
@@ -720,9 +925,9 @@ export default function Home() {
                 <div className="text-center">
                   <span className="text-2xl block mb-2">★</span>
                   <CardTitle className="text-primary uppercase text-sm tracking-wider">
-                    Exclusive
+                    Mc Pato
                   </CardTitle>
-                  <p className="text-2xl mt-2">$[XX,XXX]</p>
+                  <p className="text-2xl mt-2">$[2,000]</p>
                   <span className="text-xs text-muted-foreground">USD</span>
                 </div>
               </CardHeader>
@@ -734,11 +939,11 @@ export default function Home() {
                   </li>
                   <li className="flex gap-2">
                     <span className="text-primary">•</span>
-                    [Beneficio exclusivo 1]
+                    Segmento de 20 minutos para hablarle a toda la audiencia. 
                   </li>
                   <li className="flex gap-2">
                     <span className="text-primary">•</span>
-                    [Beneficio exclusivo 2]
+                    Protagonismo completo "La clase by Indies x Mc Pato"
                   </li>
                 </ul>
                 <Separator className="my-4" />
@@ -768,11 +973,11 @@ export default function Home() {
                 <h3 className="text-primary text-sm uppercase tracking-wider mb-2">
                   Primera fecha límite
                 </h3>
-                <Badge className="mb-4">[FECHA]</Badge>
+                <Badge className="mb-4">[15 de Febrero]</Badge>
                 <ul className="text-xs space-y-1 text-muted-foreground">
-                  <li>• [Beneficio 1]</li>
-                  <li>• [Beneficio 2]</li>
-                  <li>• [Beneficio 3]</li>
+                  <li>• Logo en stickers y merch asegurado</li>
+                  <li>• Mención de sponsor en publicaciones tempranas de difusión del evento</li>
+                  <li>• Máxima visibilidad</li>
                 </ul>
               </CardContent>
             </Card>
@@ -782,10 +987,10 @@ export default function Home() {
                   Última llamada
                 </h3>
                 <Badge variant="secondary" className="mb-4">
-                  [FECHA]
+                  [27 de Febrero]
                 </Badge>
                 <p className="text-xs text-muted-foreground">
-                  [Descripción de la fecha límite final y sus condiciones.]
+                  Fecha limite para confirmar el sponsor.
                 </p>
               </CardContent>
             </Card>
