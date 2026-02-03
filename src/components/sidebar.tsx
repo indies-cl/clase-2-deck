@@ -109,10 +109,11 @@ export function Sidebar({
 
             <Separator className="my-6" />
 
-            {/* Footer */}
+            {/* Footer 
             <div className="text-xs text-muted-foreground">
               <p className="mb-2">English version →</p>
             </div>
+            */}
           </div>
         </ScrollArea>
       </aside>
